@@ -28,30 +28,44 @@ namespace Subtitles
                     {
                         Regex time = new Regex(@"^\d\d:\d\d:\d\d,\d\d\d");
                         Regex text = new Regex(@"^(-|[a-zA-Z]).+(\r\n|$)");
-
-                        if (time.Match(line).Success)
+                        if (time.Match(line).Success || text.Match(line).Success)
                         {
-                            split = line.Split(' ');
-                            start = TimeSpan.Parse(split[0]);
-                            stop = TimeSpan.Parse(split[2]);
+                            if (time.Match(line).Success)
+                            {
+                                split = line.Split(' ');
+                                start = TimeSpan.Parse(split[0]);
+                                stop = TimeSpan.Parse(split[2]);
+                            }
+
+                            else if (text.Match(line).Success)
+                            {
+                                if (ST == null)
+                                {
+                                    ST = line;
+                                }
+                                else
+                                {
+                                    ST += "\n" + line;
+                                }
+                            }
                         }
-
-                        if (text.Match(line).Success)
+                        else
                         {
-                            ST = line;
+                            if (ST != null && start != TimeSpan.Parse("00:00") && stop != TimeSpan.Parse("00:00"))
+                            {
+                                STs.Add(new Subtitles(start, stop, ST));
+
+                                ST = null;
+                                start = TimeSpan.Parse("00:00");
+                                stop = TimeSpan.Parse("00:00");
+
+                            }
                         }
                         
 
-                        
-                        if (ST != null && start != TimeSpan.Parse("00:00") && stop != TimeSpan.Parse("00:00"))
-                        {
-                            STs.Add(new Subtitles(start, stop, ST));
 
-                            ST = null;
-                            start = TimeSpan.Parse("00:00");
-                            stop = TimeSpan.Parse("00:00");
 
-                        }
+
                         //Console.WriteLine(ST + " " + start + " " + stop);
 
 
