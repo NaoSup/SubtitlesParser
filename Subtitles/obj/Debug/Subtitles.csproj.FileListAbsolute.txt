@@ -1,0 +1,7 @@
+C:\Users\npaul\Documents\Ingesup\CoursB2\Langage Objet\Projets\Subtitles\Subtitles\bin\Debug\Subtitles.exe.config
+C:\Users\npaul\Documents\Ingesup\CoursB2\Langage Objet\Projets\Subtitles\Subtitles\bin\Debug\Subtitles.exe
+C:\Users\npaul\Documents\Ingesup\CoursB2\Langage Objet\Projets\Subtitles\Subtitles\bin\Debug\Subtitles.pdb
+C:\Users\npaul\Documents\Ingesup\CoursB2\Langage Objet\Projets\Subtitles\Subtitles\obj\Debug\Subtitles.csprojResolveAssemblyReference.cache
+C:\Users\npaul\Documents\Ingesup\CoursB2\Langage Objet\Projets\Subtitles\Subtitles\obj\Debug\Subtitles.csproj.CoreCompileInputs.cache
+C:\Users\npaul\Documents\Ingesup\CoursB2\Langage Objet\Projets\Subtitles\Subtitles\obj\Debug\Subtitles.exe
+C:\Users\npaul\Documents\Ingesup\CoursB2\Langage Objet\Projets\Subtitles\Subtitles\obj\Debug\Subtitles.pdb
