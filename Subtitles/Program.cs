@@ -15,7 +15,8 @@ namespace Subtitles
             sw.Start();
 
             Parser MrRobot = new Parser();
-            MrRobot.FileRecovery(@"C:\Users\npaul\Desktop\Mr.Robot.st.txt");
+            string path = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+            MrRobot.FileRecovery(path + @"\Mr.Robot.st.txt");
 
            
             sw.Stop();
