@@ -12,13 +12,15 @@ namespace Subtitles
         static void Main(string[] args)
         {
             Stopwatch sw = new Stopwatch();
-            sw.Start(); 
+            sw.Start();
 
-            string path = @"C:\Users\npaul\Desktop\Mr.Robot.st.txt";
             Parser MrRobot = new Parser();
-            MrRobot.FileRecovery(path);
+            MrRobot.FileRecovery(@"C:\Users\npaul\Desktop\Mr.Robot.st.txt");
 
+           
             sw.Stop();
+            //Console.WriteLine(sw.Elapsed);
+
             Console.Read();
         }
     }
