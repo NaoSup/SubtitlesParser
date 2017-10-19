@@ -11,17 +11,10 @@ namespace Subtitles
     {
         static void Main(string[] args)
         {
-            Stopwatch sw = new Stopwatch();
-            sw.Start();
-
             Parser MrRobot = new Parser();
             string path = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
-            MrRobot.FileRecovery(path + @"\Mr.Robot.st.txt");
-
-           
-            sw.Stop();
-            //Console.WriteLine(sw.Elapsed);
-
+            MrRobot.FileRecovery(path + @"\MrRobot-trailer.txt");
+            MrRobot.DisplaySubtitles();
             Console.Read();
         }
     }

@@ -13,7 +13,7 @@ namespace Subtitles
     {
         private List<Subtitles> Subtitles = new List<Subtitles>();
 
-        public async Task FileRecovery(string path)
+        public void FileRecovery(string path)
         {
             try
             {
@@ -32,10 +32,11 @@ namespace Subtitles
                     {
                         //Regex pour récupérer les temps et les sous-titres
                         Regex time = new Regex(@"^\d\d:\d\d:\d\d,\d\d\d");
-                        Regex text = new Regex(@"^(\D).+(\r\n|$)");
+                        Regex text = new Regex(@"^(.).+(\r\n|$)");
+                        Regex index = new Regex(@"^\d{1,4}$");
 
                         //Récupération des temps et des sous-titres tant que les lignes correspondent aux Regex
-                        if (time.Match(line).Success || text.Match(line).Success)
+                        if ((time.Match(line).Success || text.Match(line).Success) && !index.Match(line).Success)
                         {
                             //Récupération de la ligne des temps
                             if (time.Match(line).Success)
@@ -86,23 +87,21 @@ namespace Subtitles
             {
                 Console.WriteLine(e.Message);
             }
+        }
 
-            //Deut du chrono
-            Stopwatch watch = new Stopwatch();
-            watch.Start();
-
-            //Parcours de la liste 
-            foreach (Subtitles text in Subtitles)
+        public async Task DisplaySubtitles()
+        {
+            //Affichage premier sous-titre
+            await Task.Delay(Subtitles[0].start);
+            Console.WriteLine(Subtitles[0].ST);
+            await Task.Delay(Subtitles[0].stop - Subtitles[0].start);
+            Console.Clear();
+            for (int i = 1; i < Subtitles.Count; i++)
             {
-                //Calcul du temps d'attente pour afficher le sous titre 
-                TimeSpan debut = text.start - watch.Elapsed;
-                //Console.WriteLine(debut);
-                await Task.Delay(debut);
-                Console.WriteLine(text.ST);
+                await Task.Delay(Subtitles[i].start - Subtitles[i - 1].stop);
+                Console.WriteLine(Subtitles[i].ST);
 
-                //Calcul du temps d'attente avant de retirer le sous titre
-                TimeSpan fin = text.stop - watch.Elapsed;
-                await Task.Delay(fin);
+                await Task.Delay(Subtitles[i].stop - Subtitles[i].start);
                 Console.Clear();
             }
         }
